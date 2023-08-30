@@ -43,7 +43,7 @@ export default function SignIn() {
                 </div>
                 <div className=''>
                     <Button name='Submit' className='mt-20 w-full'/>
-                    <span className='flex gap-1 justify-center w-full mt-2'><p>Already have an account?</p><Link href={'/signin'}>Sign Up</Link></span>
+                    <span className='flex gap-1 justify-center w-full mt-2 text-[#064C72]'><p>Already have an account?</p><Link href={'/signup'} className='font-bold'>Sign Up</Link></span>
                 </div>
             </form>
         </section>
