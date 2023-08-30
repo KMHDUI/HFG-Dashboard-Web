@@ -29,7 +29,7 @@ export default function Home() {
                   <p>Dashboard</p>
 
                 </div>
-                <div className='mt-20 md:max-w-[50%] drop-shadow-lg	rounded-3xl bg-white p-6'>
+                <div className='mt-20 md:max-w-[50%] drop-shadow-lg	rounded-3xl bg-white p-6 overflow-auto md:overflow-none'>
                     <span className='grid grid-cols-2'>
                       <p>Nama</p>
                       <p>: Zeee</p>
