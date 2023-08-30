@@ -5,14 +5,19 @@ import Footer from '@/components/Footer/layout'
 import logoutIcon from "@/assets/logout.svg";
 import Cover from "@/assets/image-1.png"
 import ImageBack from "@/assets/back.svg"
+import InputCustom from "@/components/Input/layout";
+import Button from '@/components/Button/layout';
 import { Select, Option,   Input} from "@material-tailwind/react";
-import type { InputProps } from "@material-tailwind/react";
 
 export default function Verifikasi() {
   return (
     <main className="w-screen">
-        <section className='min-h-screen w-full flex'>
-            <section className='overflow-hidden relative h-screen'>
+        <section className='w-full h-fit
+                flex flex-col md:flex-row
+                
+                '>
+
+            <section className='h-[10%]  overflow-hidden relative lg:h-full'>
                 <div className=''>
                     <Image className='absolute z-0 scale-[4] top-1' src={Cover} alt='cover'></Image>
                     <div className='absolute w-full h-full bg-black opacity-30'></div>
@@ -22,72 +27,81 @@ export default function Verifikasi() {
                     <p >Dashboard</p>
                 </Link>
             </section>
-            <form className='flex flex-col gap-3 p-20'>
-                <span className='grid grid-cols-2'>
-                    <p>Nama Lengkap</p>
-                    <p>: I Made Urip Subagyo</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Nomor Handphone</p>
-                    <p>: I Made Urip Subagyo</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Alamat Email</p>
-                    <p>: I Made Urip Subagyo</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Status Pendidikan</p>
-                    <p>: I Made Urip Subagyo</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Asal Pendidikan</p>
-                    <p>: I Made Urip Subagyo</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Jurusan</p>
-                </span>
-                <span className='grid grid-cols-2'>
-                    <p>Jurusan</p>
-                    <p>Angkatan</p>
-                </span>
-                <span className='grid grid-cols-2'>
+            <form className='flex flex-col gap-3 p-10 md:p-20 w-full'>
+                <div className='flex flex-col gap-4 '>
+                    <span className='grid grid-cols-3'>
+                        <p className=''>Nama Lengkap</p>
+                        <span className='flex gap-2 col-span-2'><p>:</p><p>I Made Urip Subagyo</p></span>
+                    </span>
+                    <span className='grid grid-cols-3'>
+                        <p>Nomor Handphone</p>
+                        <span className='flex gap-2 col-span-2'><p>:</p><p>0822992929</p></span>
+                    </span>
+                    <span className='grid grid-cols-3'>
+                        <p>Alamat Email</p>
+                        <span className='flex gap-2 col-span-2'><p>:</p><p>hfg@gmail.com</p></span>
+                    </span>
+                    <span className='grid grid-cols-3'>
+                        <p>Status Pendidikan</p>
+                        <span className='flex gap-2 col-span-2'><p>:</p><p>Mahasiswa</p></span>
+                    </span>
+                    <span className='grid grid-cols-3'>
+                        <p>Asal Pendidikan</p>
+                        <span className='flex gap-2 col-span-2'><p>:</p><p>Universsitas Indonesia</p></span>
+                    </span>
+                    <span className='grid grid-cols-3 items-center'>
+                        <p>Jurusan</p>
+                        <span className='flex gap-2 items-center col-span-2'><p>:</p><InputCustom typeInput='text' className='' /></span>
+                    </span>
+                    <span className='grid grid-cols-3 items-center'>
+                        <p>Angkatan</p>
+                        <span className='flex gap-2 items-center col-span-2'><p>:</p><InputCustom typeInput='text' className='' /></span>
+                    </span>
+                    <span className='grid grid-cols-1 md:grid-cols-2 gap-10'>
+                        <div className='grid content-between h-full'>
+                            <p>Tanggal Lahir</p>
+                            <InputCustom typeInput='text' className=''/> 
+                        </div>
+                        <div className='content-between'>
+                            <p>Nomor Kartu Tanda Mahasiswa/Pelajar</p>
+                            <InputCustom typeInput='text' className=''/> 
+                        </div>
+                    </span>
+                </div>
+                <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-10 mt-10'>
                     <div>
-                        <p>Tanggal Lahir</p>
-                        <div className="w-72">
-                            <Select label="Select Version">
-                                <Option>Material Tailwind HTML</Option>
-                                <Option>Material Tailwind React</Option>
-                                <Option>Material Tailwind Vue</Option>
-                                <Option>Material Tailwind Angular</Option>
-                                <Option>Material Tailwind Svelte</Option>
-                            </Select>
-                         </div>
+                        <div className='mt-4'>
+                            <p>Uploud File KTM</p>
+                            <div className='w-full p-10 rounded-3xl text-center mt-2 align-middle 
+                                        border 
+                                        border-dashed
+                                        border-[#979797]'>
+                                Drag & drop or Chose file to Uploud
+                            </div>
+                        </div>
+                        <div className='mt-4'>
+                            <p>Link drive foto KTM *(Opsional)</p>
+                            <InputCustom typeInput='text' className='' />
+                        </div>
                     </div>
-                    <div>
-                        <p>Nomor Kartu Tanda Mahasiswa/Pelajar</p>
-                    </div>
-                </span>
-                <span className='flex justify-between w-full'>
-                    <div>
-                        <p>Uploud Foto KTM/Kartu Pelajar/SIM</p>
-                        <div className='w-full bg-black text-white p-16 text-center'>DROP ZONE ARE</div>
-                    </div>
-                    <div>
-                        <p>Uploud Screenshoot Akun terdaftar di Aplikasi HaloBelanja</p>
-                        <div className='w-full bg-black text-white p-16 text-center'>DROP ZONE ARE</div>
-                    </div>
-                </span>
 
-                <span>
                     <div>
-                        <p>Link drive foto KTM *(Opsional)</p>
+                            <div className='mt-4'>
+                                <p>Uploud File KTM</p>
+                                <div className='w-full p-10 rounded-3xl text-center mt-2 align-middle 
+                                        border 
+                                        border-dashed
+                                        border-[#979797]'>
+                                    Drag & drop or Chose file to Uploud
+                                </div>
+                            </div>
+                            <div className='mt-4'>
+                                <p>Link drive foto KTM *(Opsional)</p>
+                                <InputCustom typeInput='text' className='' />
+                            </div>
                     </div>
-                    <div>
-                        <p>Link drive SS Aplikasi HaloBelanja*(Opsional)</p>
-                    </div>
-                </span>
-
-                <button>Submit</button>
+                </div>
+                <Button name='Submit' className='mx-0 md:mx-28 mt-6'/>
             </form>
         </section>
       <Footer/>
