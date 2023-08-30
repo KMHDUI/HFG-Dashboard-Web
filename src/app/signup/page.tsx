@@ -8,10 +8,10 @@ import Button from '@/components/Button/layout';
 export default function SignUp() {
   return (
     <main className="w-screen">
-      <section className='w-full h-screen grid grid-cols-2 p-8'>
-          <section className='overflow-hidden relative h-full rounded-3xl'>
+      <section className='w-full min-h-screen md:grid md:grid-cols-2 md:p-8'>
+          <section className='hidden md:block overflow-hidden relative h-full rounded-3xl'>
                 <div>
-                    <Image src={Cover} alt='cover' className='absolute z-0'/>
+                    <Image src={Cover} alt='cover' className='absolute z-0 md:scale-[3] lg:scale-[2]'/>
                     <div className='absolute w-full h-full bg-black opacity-20'></div>
                 </div>
 
@@ -28,7 +28,7 @@ export default function SignUp() {
                     <p className='mt-2'>©2023 Hindu For Generation 17</p>
                 </div>
             </section>
-          <form className='flex flex-col gap-5 px-28'>
+          <form className='flex flex-col gap-5 px-6 lg:px-28'>
             <h3 className='font-bold text-3xl my-6 '>Register Your Account</h3>
               <div>
                 <p>Nama Lengkap</p>
@@ -47,7 +47,7 @@ export default function SignUp() {
                 <Input typeInput='text' className='' />
               </div>
 
-              <div className='grid grid-cols-2 gap-5'>
+              <div className='grid lg:grid-cols-2 gap-5'>
                 <div>
                   <p>Password</p>
                   <Input typeInput='password' className='' />
@@ -58,7 +58,7 @@ export default function SignUp() {
                 </div>
               </div>
 
-              <div className='grid grid-cols-2 gap-5'>
+              <div className='grid lg:grid-cols-2 gap-5'>
                 <div>
                   <p>Status Pendidikan</p>
                   <Input typeInput='password' className='' />
@@ -68,8 +68,8 @@ export default function SignUp() {
                   <Input typeInput='password' className='' />
                 </div>
               </div>
-              <Button name='Sign Up' className='mt-14 mx-28' />
-              <span className='flex gap-1 justify-center w-full'><p>Already have an account?</p><Link href={'/signin'}> Sign In</Link></span>
+              <Button name='Sign Up' className='mt-14 mx-16 xl:mx-28' />
+              <span className='flex gap-1 justify-center w-full text-[#064C72] mb-5'><p>Already have an account?</p><Link href={'/signin'} className='font-semibold'> Sign In</Link></span>
           </form>
       </section>
       <Footer/>
