@@ -8,10 +8,10 @@ import Button from '@/components/Button/layout';
 export default function SignIn() {
 
   return (
-    <main className="w-screen h-screen grid grid-cols-2 p-10 gap-20">
-        <section className='overflow-hidden relative h-full rounded-3xl'>
+    <main className="w-screen h-screen grid md:grid-cols-2 p-10 gap-20">
+        <section className='hidden md:block overflow-hidden relative h-full rounded-3xl'>
             <div>
-                <Image src={Cover} alt='cover' className='absolute z-0'/>
+                <Image src={Cover} alt='cover' className='absolute z-0 md:scale-[2] lg:scale-[1.5] xl:scale-[1]'/>
                 <div className='absolute w-full h-full bg-black opacity-20'></div>
             </div>
 
@@ -28,20 +28,20 @@ export default function SignIn() {
                 <p className='mt-2'>©2023 Hindu For Generation 17</p>
             </div>
         </section>
-        <section className='p-20'>
+        <section className='flex justify-center flex-col lg:p-8 xl:p-20'>
             <h3 className='text-4xl font-bold'>Sign In</h3>
             <p className='mt-2'>Log In Your Account Hindu For Generation 17</p>
-            <form className='max-w-[80%] mt-28'>
-                <div className='mt-10 mr-28'>
+            <form className=' mt-28 lg:max-w-[80%]'>
+                <div className='mt-10'>
                     <p>Email</p>
                     <Input typeInput="email" className="mt-2"/>
                 </div>
-                <div className='mt-6 mr-28'>
+                <div className='mt-6'>
                     <p>Password</p>
                     <Input typeInput="password" className="mt-2"/>
                     <Link href={'/forgotpassword'}><p className='text-[#064C72] text-end mt-2'>Lupa Password?</p></Link>
                 </div>
-                <div className='mr-28'>
+                <div className=''>
                     <Button name='Submit' className='mt-20 w-full'/>
                     <span className='flex gap-1 justify-center w-full mt-2'><p>Already have an account?</p><Link href={'/signin'}>Sign Up</Link></span>
                 </div>
