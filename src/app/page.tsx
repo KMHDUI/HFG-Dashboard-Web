@@ -12,7 +12,7 @@ export default function Home() {
     )  }
   return (
     <main className="w-screen">
-      <div className='h-screen w-full bg-[#F1F1F1]'>
+      <div className='min-h-screen w-full bg-[#F1F1F1]'>
           <section className='p-5 px-16 flex justify-end'>
             <button className='p-2 bg-[#CA2812] rounded-full p-2 px-4 flex gap-4'>
               <Image src={logoutIcon} alt='logouticon'/>
@@ -20,7 +20,7 @@ export default function Home() {
             </button>
           </section>
 
-          <section className='grid grid-cols-2 p-20'>
+          <section className='flex flex-col md:grid md:grid-cols-2 gap-3 md:flex-row p-8 md:p-20'>
               <div className=''>
                 <div className='text-4xl/10 font-semibold'>
                   <p>Hai, Zee👋</p>
@@ -29,7 +29,7 @@ export default function Home() {
                   <p>Dashboard</p>
 
                 </div>
-                <div className='mt-20 max-w-[50%] drop-shadow-lg	rounded-3xl bg-white p-6'>
+                <div className='mt-20 md:max-w-[50%] drop-shadow-lg	rounded-3xl bg-white p-6'>
                     <span className='grid grid-cols-2'>
                       <p>Nama</p>
                       <p>: Zeee</p>
