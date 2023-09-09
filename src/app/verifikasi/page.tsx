@@ -7,19 +7,18 @@ import Cover from "@/assets/image-1.png"
 import ImageBack from "@/assets/back.svg"
 import InputCustom from "@/components/Input/layout";
 import Button from '@/components/Button/layout';
+import DropInput from '@/components/DropInput/layout';
 import { Select, Option,   Input} from "@material-tailwind/react";
 
 export default function Verifikasi() {
   return (
     <main className="w-screen">
-        <section className='w-full h-fit
+        <section className='w-full
                 flex flex-col md:flex-row
-                
                 '>
-
-            <section className='h-[10%]  overflow-hidden relative lg:h-full'>
-                <div className=''>
-                    <Image className='absolute z-0 scale-[4] top-1' src={Cover} alt='cover'></Image>
+            <section className='relative overflow-hidden'>
+                <div className='h-full w-auto absolute z-0'>
+                    <Image className='object-cover w-full h-auto md:h-full md:w-auto' src={Cover} alt='cover'></Image>
                     <div className='absolute w-full h-full bg-black opacity-30'></div>
                 </div>
                 <Link className='p-16 relative z-1 text-white flex gap-5' href={"/"}>
@@ -27,7 +26,9 @@ export default function Verifikasi() {
                     <p >Dashboard</p>
                 </Link>
             </section>
+            
             <form className='flex flex-col gap-3 p-10 md:p-20 w-full'>
+                <h1 className='font-bold text-3xl my-2 text-center'>Form Verifikasi</h1>
                 <div className='flex flex-col gap-4 '>
                     <span className='grid grid-cols-3'>
                         <p className=''>Nama Lengkap</p>
@@ -72,12 +73,7 @@ export default function Verifikasi() {
                     <div>
                         <div className='mt-4'>
                             <p>Uploud File KTM</p>
-                            <div className='w-full p-10 rounded-3xl text-center mt-2 align-middle 
-                                        border 
-                                        border-dashed
-                                        border-[#979797]'>
-                                Drag & drop or Chose file to Uploud
-                            </div>
+                            <DropInput></DropInput>
                         </div>
                         <div className='mt-4'>
                             <p>Link drive foto KTM *(Opsional)</p>
@@ -88,12 +84,7 @@ export default function Verifikasi() {
                     <div>
                             <div className='mt-4'>
                                 <p>Uploud File KTM</p>
-                                <div className='w-full p-10 rounded-3xl text-center mt-2 align-middle 
-                                        border 
-                                        border-dashed
-                                        border-[#979797]'>
-                                    Drag & drop or Chose file to Uploud
-                                </div>
+                                <DropInput></DropInput>
                             </div>
                             <div className='mt-4'>
                                 <p>Link drive foto KTM *(Opsional)</p>
@@ -104,7 +95,7 @@ export default function Verifikasi() {
                 <Button name='Submit' className='mx-0 md:mx-28 mt-6'/>
             </form>
         </section>
-      <Footer/>
+        <Footer/>
     </main>
   )
 }

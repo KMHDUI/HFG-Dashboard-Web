@@ -5,7 +5,26 @@ import Footer from '@/components/Footer/layout'
 import logoutIcon from "@/assets/logout.svg";
 import Input from '@/components/Input/layout';
 import Button from '@/components/Button/layout';
+import axios from 'axios';
 export default function SignUp() {
+
+  const register = async (account:String) => {
+    const data = await axios.post('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/vi/user/register', {
+      fullname: "John Doe",
+      nickname: "johnd",
+      email: "john@example.com",
+      phone: "082147474931",
+      password: "secret123",
+      status: "active",
+      college: "University XYZ"
+      }
+    ).then(
+
+    )
+    .catch()
+  
+  }
+
   return (
     <main className="w-screen">
       <section className='w-full min-h-screen md:grid md:grid-cols-2 md:p-8'>
