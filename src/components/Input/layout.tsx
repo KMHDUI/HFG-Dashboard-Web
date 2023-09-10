@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 type InputType = {
   typeInput:String,
-  className:String
+  className:String,
+  onChange: any
 }
 
 export default function Input(props: InputType) {
@@ -19,6 +20,7 @@ export default function Input(props: InputType) {
             rounded-3xl
             ${props.className}
         `}
+        onChange={(e) => props.onChange(e.target.value)}
             />
     </>
   )
