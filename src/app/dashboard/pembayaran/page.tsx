@@ -12,6 +12,9 @@ export default function Pembayaran() {
     function verifikasiPembayaran(){
 
     }
+
+
+
   return (
     <>
     <section className='p-10 md:p-28 xl:p-32'>
@@ -96,7 +99,7 @@ export default function Pembayaran() {
 
                 <div className='mt-16 xl:mt-0 '>
                     <p className='text-center my-2'>Pastikan anda melakukan proses transfer sebelum melakukan verifikasi</p>
-                    <Button name={'Verifikasi'} className={'w-full font-semibold'}/>
+                    {/* <Button name={'Verifikasi'} className={'w-full font-semibold'}/> */}
                 </div>
             </section>
         </section>

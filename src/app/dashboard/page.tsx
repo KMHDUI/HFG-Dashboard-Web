@@ -22,6 +22,7 @@ export default function Home() {
 
     let router = useRouter()
     const [data, setData] = useState<responeseUser>();
+    const [competition, setCompetititon] = useState<String[]>();
 
     const notVerif = ()=> {
         return (
@@ -58,6 +59,14 @@ export default function Home() {
                     setData(res.data.data)
                 }
             )
+
+              axios.get('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition').then(
+                (response) => {
+                  setCompetititon(response.data.data)
+                  console.log(response.data.data)
+                }
+              )
+            
     }, [])
 
   return (
@@ -74,7 +83,7 @@ export default function Home() {
           <section className='flex flex-col md:grid md:grid-cols-2 gap-3 md:flex-row p-8 md:p-20'>
               <div className=''>
                 <div className='text-4xl/10 font-semibold'>
-                  <p>Hai, Zee👋</p>
+                  <p>Hai, {data?.nickname}👋</p>
                   <p>Welcome To</p>
                   <p>Hindu For Generation</p>
                   <p>Dashboard</p>
@@ -105,11 +114,17 @@ export default function Home() {
               </div>
               <div>
                   {data?.is_verified ? <></>: notVerif()}
-                  <div>
-                    {/* <button onClick={}></button> */}
-                  </div>
+                    <p className='mt-10 text-center'>Anda baru bisa mendaftar pada tanggal 15 September 2023</p>
               </div>
           </section>
+
+          {/* <section className='bg-black w-full h-[200px]'>
+                {competition?.map((data, ind) => {
+                    return(<div id={`{ind}`} className='bg-white min-[10px] min-h-[10px]' >
+                        <p></p>
+                    </div>)
+                })}
+          </section> */}
       </div>
       <Footer/>
     </div>

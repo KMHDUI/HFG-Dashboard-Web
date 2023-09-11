@@ -27,7 +27,7 @@ export default function Submition() {
                     <li>3. Yang memberi centang dibawah ini telah membaca dan membaca SYARAT DAN KETENTUAN LOMBA Essai 17 HINDU FOR GENERATION yang telah diinformasikan oleh panitia.</li>
                 </ul>
 
-                <Button name={'Submit'} className={'w-full  mt-16 '}/>
+                {/* <Button name={'Submit'} className={'w-full  mt-16 '}/> */}
             </div>
         </div>
     </>

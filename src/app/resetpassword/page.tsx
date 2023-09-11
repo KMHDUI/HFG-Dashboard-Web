@@ -1,9 +1,13 @@
+"use client";
 import Image from 'next/image'
 import Footer from '@/components/Footer/layout'
 import LockIcon from "@/assets/Lock.svg";
 import Input from '@/components/Input/layout';
 import KeyIcon from "@/assets/Key.svg"
+import { useState } from 'react';
 export default function ResetPassword() {
+    const [newPassword, setNewPassword] = useState<String>();
+    const [reEnterNewPassword, setReEnterNewPassword] = useState<String>();
   return (
     <main className="w-screen bg-[#F1F1F1]">
         <div className='w-full h-screen flex justify-center items-center'>
@@ -18,10 +22,10 @@ export default function ResetPassword() {
                     </span>
                     <div className='my-10 border-2'></div>                       
                         <p className='mt-4'>New password</p>
-                        <Input typeInput="password" className={'mt-10'}/>
+                        <Input typeInput="password" className={'mt-10'} onChange={setNewPassword}/>
 
                         <p className='mt-4'>Re-enter new password</p>
-                        <Input typeInput="password" className={'mt-10'}/>
+                        <Input typeInput="password" className={'mt-10'} onChange={setReEnterNewPassword}/>
                  </div>
                 <button className='mt-10 bg-[#064C72] w-full p-3 text-white'>Submit</button>
             </form>

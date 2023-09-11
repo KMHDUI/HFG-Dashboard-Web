@@ -86,6 +86,10 @@ export default function Verifikasi() {
 
     }
 
+    const handleDisableChange = async () =>{
+        alert
+    }
+
   return (
     <div className="w-screen">
         <section className='w-full
@@ -96,7 +100,7 @@ export default function Verifikasi() {
                     <Image className='object-cover w-full h-auto md:h-full md:w-auto' src={Cover} alt='cover'></Image>
                     <div className='absolute w-full h-full bg-black opacity-30'></div>
                 </div>
-                <Link className='p-16 relative z-1 text-white flex gap-5' href={"/"}>
+                <Link className='p-16 relative z-1 text-white flex gap-5' href={"/dashboard"}>
                     <Image  src={ImageBack} alt='back-icon' className='h-[16px] w-auto self-center'/>
                     <p >Dashboard</p>
                 </Link>
@@ -104,6 +108,12 @@ export default function Verifikasi() {
             
             <form className='flex flex-col gap-3 p-10 md:p-20 w-full'>
                 <h1 className='font-bold text-3xl my-2 text-center'>Form Verifikasi</h1>
+                <div className="text-center py-4 lg:px-4">
+                    <div className="p-2 bg-[#CD1900] items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                        <span className="flex rounded-full bg-[#FFB21E] uppercase px-2 py-1 text-xs font-bold mr-3">Alert</span>
+                        <span className="font-semibold mr-2 text-left flex-auto">Untuk Saat ini sistem belum dapat menerima verifikasi anda</span>
+                    </div>
+                </div>
                 <div className='flex flex-col gap-4 '>
                     <span className='grid grid-cols-3'>
                         <p className=''>Nama Lengkap</p>
@@ -135,7 +145,7 @@ export default function Verifikasi() {
                     </span>
                     <span className='grid grid-cols-1 md:grid-cols-2 gap-10'>
                         <div className='grid content-between h-full'>
-                            <p>Tanggal Lahir</p>
+                            <p>Tanggal Lahir (yyyy-mm-dd)</p>
                             <InputCustom typeInput='text' className='' onChange={setTanggalLahir}/> 
                         </div>
                         <div className='content-between'>
@@ -150,10 +160,6 @@ export default function Verifikasi() {
                             <p>Uploud File KTM</p>
                             <DropInput></DropInput>
                         </div>
-                        {/* <div className='mt-4'>
-                            <p>Link drive foto KTM *(Opsional)</p>
-                            <InputCustom typeInput='text' className='' />
-                        </div> */}
                     </div>
 
                     <div>
@@ -161,13 +167,10 @@ export default function Verifikasi() {
                                 <p>Uploud File KTM</p>
                                 <DropInput></DropInput>
                             </div>
-                            {/* <div className='mt-4'>
-                                <p>Link drive foto KTM *(Opsional)</p>
-                                <InputCustom typeInput='text' className='' />
-                            </div> */}
                     </div>
                 </div>
-                <Button name='Submit' className='mx-0 md:mx-28 mt-6' onClickFunction={handleVerifikasi} />
+                
+                <Button name='Submit' className='mx-0 md:mx-28 mt-6' onClickFunction={handleDisableChange} />
             </form>
         </section>
         <Footer/>

@@ -76,10 +76,14 @@ const goToNext = () => {
       <section className='w-full  bg-[#F8F5EF] px-10 md:px-20 py-28 '>
 
         <div className='w-full grid justify-items-center'><Image src={Banner} alt='banner' className='max-h-[300px] w-auto'></Image></div>
+        <div className='w-full grid justify-items-center mt-20'>
+          <iframe src="https://drive.google.com/file/d/1rAUifas0z8pgfQltgrU9L0PjoGXEPw1h/preview"  className=' md:min-w-[854px] md:min-h-[480px]' allow="autoplay"></iframe>
+
+        </div>
         <Link href={'/dashboard'}>
-          <p className='mt-28 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[30%] mx-auto text-center font-semibold md:text-xl '>Register Competition</p>
+          <p className='mt-16 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[40%] mx-auto text-center font-semibold md:text-xl '>Register Competition</p>
         </Link>
-        <div className='text-center mt-5 md:mt-20'>
+        {/* <div className='text-center mt-5 md:mt-20'>
             <p className='font-semibold md:text-2xl'>Our Competition</p>
             <div className='flex flex-col md:flex-row justify-between xl:px-64 mt-2 md:mt-10 md:text-xl'>
                 <p>Esai</p>
@@ -87,7 +91,7 @@ const goToNext = () => {
                 <p>Fotografi</p>
                 <p>Story Telling</p>
             </div>
-        </div>
+        </div> */}
       </section>
       
       <section className='xl:px-64 bg-[#026C80]'>

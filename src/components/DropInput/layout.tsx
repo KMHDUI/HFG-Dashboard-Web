@@ -38,7 +38,7 @@ export default function DropInput(){
   return (
      
     
-    <form className="flex items-center justify-center w-full mt-5">
+    <div className="flex items-center justify-center w-full mt-5">
         <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
             {linkURL ? "" : NotValue()}
             <input 
@@ -49,6 +49,6 @@ export default function DropInput(){
                 onChange={() => console.log("IN")}
                 />
         </label>
-    </form> 
+    </div> 
   )
 }
