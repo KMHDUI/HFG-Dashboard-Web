@@ -30,14 +30,14 @@ export default function Footer() {
                 <h3 className='font-bold'>Links</h3>
                 <div className='mt-3 flex flex-col gap-3 font-light	'>
                     <Link href={''}>Home</Link>
-                    <Link href={''}>About</Link>
+                    {/* <Link href={''}>About</Link> */}
                     <Link href={''}>Competition</Link>
-                    <Link href={''}>Galery</Link>
-                    <Link href={''}>Sponsorship</Link>
-                    <Link href={''} className='bg-white rounded-full w-max px-3 p-1 flex gap-2'>
+                    {/* <Link href={''}>Galery</Link> */}
+                    {/* <Link href={''}>Sponsorship</Link> */}
+                    {/* <Link href={''} className='bg-white rounded-full w-max px-3 p-1 flex gap-2'>
                         <p className='text-[#064C72]'>Donation</p>
                         <Image src={ArrowIcon} alt='direct-icon'/>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
             <div className='mt-8 md:mt-0 flex flex-col gap-3'>
