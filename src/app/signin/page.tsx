@@ -42,16 +42,17 @@ export default function SignIn() {
     }
 
   return (
-    <main className="w-screen h-screen grid md:grid-cols-2 p-10 gap-20">
+    <main className='w-screen '>
+        <div className=" h-screen grid md:grid-cols-2 p-10 gap-20">
         <section className='hidden md:block overflow-hidden relative h-full rounded-3xl'>
             <div>
                 <Image src={Cover} alt='cover' className='absolute z-0 md:scale-[2] lg:scale-[1.5] xl:scale-[1]'/>
                 <div className='absolute w-full h-full bg-black opacity-20'></div>
             </div>
 
-            <h3 className='relative z-1 font-bold text-4xl text-white p-20'>Hi, Welcome Back👋</h3>
+            {/* <h3 className='relative z-1 font-bold text-4xl text-white p-20'>Hi, Welcome Back👋</h3> */}
 
-            <div className='absolute bottom-3 w-full p-8 text-white text-center'>
+            {/* <div className='absolute bottom-3 w-full p-8 text-white text-center'>
                 <span className='flex justify-between'>
                     <Link href="/">Home</Link>
                     <Link href="/">About Us</Link>
@@ -60,7 +61,7 @@ export default function SignIn() {
 
                 </span>
                 <p className='mt-2'>©2023 Hindu For Generation 17</p>
-            </div>
+            </div> */}
         </section>
         <section className='flex justify-center flex-col lg:p-8 xl:p-20'>
             <h3 className='text-4xl font-bold'>Sign In</h3>
@@ -84,6 +85,8 @@ export default function SignIn() {
                 </div>
             </form>
         </section>
+    </div>
+    <Footer/>
     </main>
   )
 }
