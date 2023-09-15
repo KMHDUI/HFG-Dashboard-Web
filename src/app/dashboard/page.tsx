@@ -35,7 +35,7 @@ export default function Home() {
 
     let router = useRouter()
     const [data, setData] = useState<responeseUser>();
-    const [competition, setCompetititon] = useState<String[]>();
+    const [competition, setCompetititon] = useState<cardCompetition[]>();
     const [meCompetition, setMeCompetititon] = useState<listMeCompetitionType[]>();
     const [listCompetitio, setListCompetitio] = useState<String[]>([]);
 
@@ -159,7 +159,6 @@ export default function Home() {
       )
       return '';
     }
-    console.log(meCompetition)
   return (
     <div className="w-screen">
       {choseFutsal()}
