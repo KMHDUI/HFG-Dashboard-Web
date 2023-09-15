@@ -31,7 +31,7 @@ type responeseUser = {
     is_verified:boolean
 }
 
-export default function detail({ params }: { params: { id: String } }) {
+export default function Detail({ params }: { params: { id: String } }) {
     const [profile, setProfile] = useState<responeseUser>();
     const [detail, setDetail] = useState<detailProps>();
     const [headerName, setHeaderName] = useState<String>("");
