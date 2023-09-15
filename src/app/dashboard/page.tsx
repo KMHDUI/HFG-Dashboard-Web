@@ -73,7 +73,7 @@ export default function Home() {
               const list = ress.data.data
 
               const name:String[] = [];
-              list.map((data) => {
+              list.map((data:any) => {
                   name.push(data.name)
 
               })
