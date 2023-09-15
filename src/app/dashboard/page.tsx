@@ -113,7 +113,7 @@ export default function Home() {
       </div>
     }
 
-    function cardDetailDiikuti(code:String, paymentStatus:String, nameCompetition:String, index:number){
+    function cardDetailDiikuti(code:any, paymentStatus:String, nameCompetition:String, index:number){
       return<div className='bg-white  text-black p-3 rounded-xl flex justify-between items-center' key={index}>
           <div>
             <p className='text-xl mb-2'>{nameCompetition}</p>
