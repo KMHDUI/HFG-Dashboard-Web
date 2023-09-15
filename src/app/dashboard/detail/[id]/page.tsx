@@ -55,7 +55,6 @@ export default function detail({ params }: { params: { id: String } }) {
 
         axios.get(url, config).then(
             (response) => {
-                console.log(response)
                 if(response.status == 200){
                     setDetail({
                         competition_name:response.data.data.competition_name,
@@ -76,7 +75,7 @@ export default function detail({ params }: { params: { id: String } }) {
                 }
             }
         ).catch(()=> {                    router.push('/dashboard')    })
-    }, [])
+    }, [params.id])
 
     const TeamDevelop = () => {
         return<div>
