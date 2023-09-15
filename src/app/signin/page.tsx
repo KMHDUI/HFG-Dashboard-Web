@@ -9,6 +9,7 @@ import Button from '@/components/Button/layout';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { setCookie } from 'cookies-next';
+import AccessDeniedIcon from '@/assets/errorr.svg'
 import axios from 'axios';
 
 
@@ -16,10 +17,10 @@ export default function SignIn() {
     const [email, setEmail] = useState<String>();
     const [password, setPassword] = useState<String>();
     const [invalid, setInvalid] =useState<boolean>(false)
+    const [invalidMessage, setInvalidMessage] = useState<String>("")
     let router = useRouter();
 
     const handleSignIn = async () => {
-
         await axios.post('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/user/login',{
             email: email,
             password: password
@@ -28,7 +29,10 @@ export default function SignIn() {
                 if(response.status == 200){
                     setCookie('token', response.data.token,{maxAge:60*60*6})
                     localStorage.setItem("token", response.data.token)
+                    router.push('/dashboard')
                 } else{
+                    setInvalidMessage(response.data.message)
+                    console.log(response)
                     setInvalid(true)
                 }                
             }
@@ -41,27 +45,26 @@ export default function SignIn() {
         router.push('/dashboard')
     }
 
+    function modalPopUp(){
+        return (<div  className="fixed top-0 left-0 right-0 z-50 p-4 w-screen h-screen flex justify-center items-center">
+            <div className=" relative bg-white drop-shadow-md rounded-xl overflow-hidden p-14 flex flex-col">
+                <Image src={AccessDeniedIcon} alt='img' className='h-[100px] w-auto'></Image>
+                <p className='text-xl font-bold mt-3'>Access Denied</p>
+                <p className=''>{invalidMessage}</p>
+                <button onClick={() => {setInvalid(!invalid); router.push('/signin')}}>Close</button>
+            </div>
+         </div>)
+      }
+
   return (
     <main className='w-screen '>
+        {invalid ? modalPopUp() : <></>}
         <div className=" h-screen grid md:grid-cols-2 p-10 gap-20">
         <section className='hidden md:block overflow-hidden relative h-full rounded-3xl'>
             <div>
                 <Image src={Cover} alt='cover' className='absolute z-0 md:scale-[2] lg:scale-[1.5] xl:scale-[1]'/>
                 <div className='absolute w-full h-full bg-black opacity-20'></div>
             </div>
-
-            {/* <h3 className='relative z-1 font-bold text-4xl text-white p-20'>Hi, Welcome Back👋</h3> */}
-
-            {/* <div className='absolute bottom-3 w-full p-8 text-white text-center'>
-                <span className='flex justify-between'>
-                    <Link href="/">Home</Link>
-                    <Link href="/">About Us</Link>
-                    <Link href="/">Competition</Link>
-                    <Link href="/">Contact Us</Link>
-
-                </span>
-                <p className='mt-2'>©2023 Hindu For Generation 17</p>
-            </div> */}
         </section>
         <section className='flex justify-center flex-col lg:p-8 xl:p-20'>
             <h3 className='text-4xl font-bold'>Sign In</h3>

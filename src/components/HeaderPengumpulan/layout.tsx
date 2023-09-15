@@ -12,11 +12,11 @@ const philosopher = Philosopher({
     });
 
 type InputType = {
-  typeInput:String,
-  className:String
+  HeaderName:String,
+  // className:String
 }
 
-export default function HeaderPengumpulan(){
+export default function HeaderPengumpulan(props:InputType){
   return (
     <>
      <div className='w-screen'>
@@ -26,7 +26,7 @@ export default function HeaderPengumpulan(){
                 <div className='absolute w-full h-full bg-[black] opacity-60 '></div>
             </div>
             <div className='absolute z-1 text-white w-full h-full flex items-center'>
-                <h1 className={`${philosopher.className} text-5xl text-center flex-grow`}>Pengumpulan hasil karya Essai</h1>
+                <h1 className={`${philosopher.className} text-5xl text-center flex-grow`}>{props.HeaderName}</h1>
             </div>
         </div>
      </div>

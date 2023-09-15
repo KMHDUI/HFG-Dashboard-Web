@@ -8,8 +8,8 @@ import logoutIcon from "@/assets/logout.svg";
 import Input from '@/components/Input/layout';
 import Button from '@/components/Button/layout';
 import axios from 'axios';
-import IconSuccess from '@/assets/success-signup.svg'
-import IconFailed from '@/assets/failed-message.svg'
+import IconSuccess from '@/assets/success_signup.svg'
+import IconFailed from '@/assets/failed_message.svg'
 import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/navigation';
 
@@ -31,7 +31,7 @@ export default function SignUp() {
   const [success, setSuccess] = useState<boolean>(false)
   const [invalidInput, setInvalidInput] = useState<boolean>(false)
 
-
+  
   let router = useRouter();
 
   function loadingAnimation(){
@@ -128,19 +128,6 @@ export default function SignUp() {
                     <Image src={Cover} alt='cover' className='absolute z-0 md:scale-[3] lg:scale-[2]'/>
                     <div className='absolute w-full h-full bg-black opacity-30'></div>
                 </div>
-
-                {/* <h3 className='relative z-1 font-bold text-4xl text-white p-20'>Hi, Welcome Back👋</h3> */}
-
-                {/* <div className='absolute bottom-3 w-full p-8 text-white text-center'>
-                    <span className='flex justify-between'>
-                        <Link href="/">Home</Link>
-                        <Link href="/">About Us</Link>
-                        <Link href="/">Competition</Link>
-                        <Link href="/">Contact Us</Link>
-
-                    </span>
-                    <p className='mt-2'>©2023 Hindu For Generation 17</p>
-                </div> */}
             </section>
           <form  className='flex flex-col gap-5 px-6 lg:px-28' id='form-signup'>
             <h3 className='font-bold text-3xl my-6 '>Register Your Account</h3>

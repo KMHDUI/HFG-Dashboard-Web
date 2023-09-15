@@ -18,11 +18,20 @@ type responeseUser = {
     is_verified:boolean
 }
 
+type cardCompetition = {
+  id : String,
+  type : String ,
+  name: String,
+  using_submission: boolean
+}
+
 export default function Home() {
 
     let router = useRouter()
     const [data, setData] = useState<responeseUser>();
     const [competition, setCompetititon] = useState<String[]>();
+    const [meCompetition, setMeCompetititon] = useState<String[]>();
+    const [listCompetitio, setListCompetitio] = useState<String[]>([]);
 
     const notVerif = ()=> {
         return (
@@ -60,19 +69,92 @@ export default function Home() {
                 }
             )
 
-              axios.get('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition').then(
+            axios.get('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition/me', config).then((ress) => {
+              const list = ress.data.data
+
+              const name:String[] = [];
+              list.map((data) => {
+                  name.push(data.name)
+
+              })
+              setListCompetitio(name);
+              setMeCompetititon(ress.data.data)
+            })
+
+            axios.get('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition').then(
                 (response) => {
                   setCompetititon(response.data.data)
-                  console.log(response.data.data)
                 }
               )
-            
     }, [])
+
+    const cardCompetition = ( 
+      id : String,
+      type : String ,
+      name: String,     
+      using_submission: boolean) => {
+
+      return <div className='min-h-[120px] w-full md:min-w-[350px] bg-white  rounded-2xl p-10' id={`${id}`}>
+          {/* {confirmation?modalPopUp():<></>} */}
+          <p className='font-bold text-2xl text-[#5B5B5B]'>{type}</p>
+          <p className=''>{name}</p>
+          <p className='mt-10 text-[#D2230B]'>Required Submision</p>
+          <div className='flex flex-col md:flex-row gap-2'>
+            <button className='border-2 border-[#064C72] text-[#064C72] w-full p-2 rounded-2xl font-semibold'
+                onClick={()=> {
+                  router.push('/dashboard')
+                }}
+            >{`Detail`}</button>
+            {listCompetitio.includes(type, 0) ? 
+                <button className='bg-[#064C72]  w-full p-2 rounded-2xl text-white opacity-75' disabled>Register</button> 
+                : <button className='bg-[#064C72] w-full p-2 rounded-2xl text-white' 
+                      onClick={()=> {handlerRegister(id)}}>Register</button>}
+            </div>
+      </div>
+    }
+
+    function cardDetailDiikuti(code:String, paymentStatus:String, nameCompetition:String, index:number){
+      return<div className='bg-white  text-black p-3 rounded-xl flex justify-between items-center' key={index}>
+          <div>
+            <p className='text-xl mb-2'>{nameCompetition}</p>
+            {paymentStatus == "Pending" ? <p className={`text-sm bg-[#FFB21E] rounded-full p-1 text-center min-w-[110px]`}>{paymentStatus}</p> : <p className={`text-sm bg-[#FF1A1A] rounded-full p-1 text-center min-w-[110px]`}>{paymentStatus}</p>}
+          </div>
+          <Link href={`/dashboard/detail/${code}`} >
+                <p>See Detail</p>
+                
+          </Link>
+      </div>
+    }
+
+    function handlerRegister(id:String){
+
+      let config = {
+        headers: {
+        'Authorization': 'Bearer ' + getCookie('token')
+        }
+    }
+      axios.post('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition/register',
+      {
+        "competitionId": id
+      }, config
+      ).then(
+        (ress) => {
+          if(ress.status == 200){
+            router.push(`/dashboard/detail/${ress.data.data.competition_id}`)
+          } else{
+            router.push('/dashboard')
+          }
+        } 
+      ).catch(
+        (err) => {}
+      )
+      return '';
+    }
 
   return (
     <div className="w-screen">
       {choseFutsal()}
-      <div className='min-h-screen w-full bg-[#F1F1F1]'>
+      <div className='min-h-screen w-full bg-[#F6F8FD]'>
           <section className='p-5 px-16 flex justify-end'>
             <button onClick={handleLogOut} className='p-2 bg-[#CA2812] rounded-full p-2 px-4 flex gap-4'>
               <Image src={logoutIcon} alt='logouticon'/>
@@ -95,7 +177,7 @@ export default function Home() {
                       <p>: {data?.fullname}</p>
                     </span>
                     <span className='grid grid-cols-2'>
-                      <p>Alamat Email</p>
+                    <p>Alamat Email</p>
                       <p>:  {data?.email}</p>
                     </span>
                     <span className='grid grid-cols-2'>
@@ -114,19 +196,28 @@ export default function Home() {
               </div>
               <div>
                   {data?.is_verified ? <></>: notVerif()}
-                    <p className='mt-10 text-center'>Anda baru bisa mendaftar pada tanggal 15 September 2023</p>
+                  <div className='flex flex-col gap-2 mt-10'>
+                    <p>My Competition</p>
+                    {meCompetition?.map((data, index)=> cardDetailDiikuti(data.code, data.payment_status, data.name, index))}
+                  </div>
               </div>
           </section>
 
-          {/* <section className='bg-black w-full h-[200px]'>
+          <section className=' w-full p-8 md:p-20 gap-4'>
+                <p className='text-2xl font-semibold'>List Competition</p> 
+                <div className='flex flex-col md:flex-row md:flex-wrap justify-between gap-4 mt-10 w-full'>
                 {competition?.map((data, ind) => {
-                    return(<div id={`{ind}`} className='bg-white min-[10px] min-h-[10px]' >
-                        <p></p>
+                    return(<div id={`${ind}`} className='min-[10px] min-h-[10px]' key={ind} >
+                        {cardCompetition(data.id,data.name, data.type, data.using_submission)}
                     </div>)
                 })}
-          </section> */}
+                </div>
+          </section>
       </div>
       <Footer/>
     </div>
   )
 }
+
+
+

@@ -20,6 +20,7 @@ export default function ForgotPassword() {
                 }).then(
                     (res) =>{
                         console.log(res)
+                        router.push('/signin')
                     }
                 ).catch((err)=> {
                         console.log(err)

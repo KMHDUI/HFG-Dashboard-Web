@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link';
 import ImageCover from '@/assets/imagecover.png'
 import {Philosopher } from 'next/font/google'
-import { useState } from 'react';
+import { useState, useRef, ChangeEvent, Dispatch, SetStateAction } from 'react';
+import axios from 'axios';
 
 const philosopher = Philosopher({ 
     weight: ['400', '700'],
@@ -13,19 +14,37 @@ const philosopher = Philosopher({
       
     });
 
-type InputType = {
-  typeInput:String,
-  className:String
+type InputTypeDropZone = {
+  selectedFiles : File | null,
+  setSelectedFiles: Dispatch<SetStateAction<File | null>>
 }
 
-export default function DropInput(){
+export default function DropInput(props: InputTypeDropZone){
 
-    const [linkURL, setLinkURL] = useState<String>()
+    // const [selectedFiles, setSelectedFiles] = useState<File | null>(null);
 
-    function onChangeFiled(){
-        // UPLOUD TO MY LINK
-    }
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
+    const removeFileHandler = (e: any) => {
+      e.preventDefault();
+      // setSelectedFiles(null);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+    };
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const files = event.target.files;
+      if (files) {
+        const file = files[0];
+        if (file) {
+          props.setSelectedFiles(file);
+          return;
+        }
+      }
+      props.setSelectedFiles(null);
+    };
+  
     function NotValue(){
         return  <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -35,18 +54,17 @@ export default function DropInput(){
             <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, and PDF (MAX. 3Mb)</p>
     </div>
     }
+
   return (
-     
-    
     <div className="flex items-center justify-center w-full mt-5">
         <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            {linkURL ? "" : NotValue()}
+            {props.selectedFiles ? <p>{props.selectedFiles.name}</p> : NotValue()}
             <input 
                 id="dropzone-file" 
                 type="file" 
                 className="hidden" 
-                accept='image/jpeg, image/png, application/pdf'
-                onChange={() => console.log("IN")}
+                accept='image/jpeg, image/png'
+                onChange={handleFileChange}
                 />
         </label>
     </div> 
