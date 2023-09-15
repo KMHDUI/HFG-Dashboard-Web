@@ -25,12 +25,18 @@ type cardCompetition = {
   using_submission: boolean
 }
 
+type listMeCompetitionType ={
+  code: String, 
+  payment_status: String, 
+  name : String
+}
+
 export default function Home() {
 
     let router = useRouter()
     const [data, setData] = useState<responeseUser>();
     const [competition, setCompetititon] = useState<String[]>();
-    const [meCompetition, setMeCompetititon] = useState<String[]>();
+    const [meCompetition, setMeCompetititon] = useState<listMeCompetitionType[]>();
     const [listCompetitio, setListCompetitio] = useState<String[]>([]);
 
     const notVerif = ()=> {
@@ -73,12 +79,15 @@ export default function Home() {
               const list = ress.data.data
 
               const name:String[] = [];
+              const meCompetitionList:listMeCompetitionType[] = [];
               list.map((data:any) => {
                   name.push(data.name)
-
+                  meCompetitionList.push({code: data.code, 
+                    payment_status: data.payment_status, 
+                    name : data.name})
               })
               setListCompetitio(name);
-              setMeCompetititon(ress.data.data)
+              setMeCompetititon(meCompetitionList)
             })
 
             axios.get('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition').then(
@@ -150,7 +159,7 @@ export default function Home() {
       )
       return '';
     }
-
+    console.log(meCompetition)
   return (
     <div className="w-screen">
       {choseFutsal()}
