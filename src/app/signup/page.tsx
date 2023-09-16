@@ -29,7 +29,8 @@ export default function SignUp() {
   const [modal, setModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false)
-  const [invalidInput, setInvalidInput] = useState<boolean>(false)
+  const [invalidInput, setInvalidInput] = useState<boolean>(false);
+  const [messageFailed, setMessageFailed] = useState<String>()
 
   
   let router = useRouter();
@@ -59,10 +60,11 @@ export default function SignUp() {
   }
 
   function messageInformationFailed(){
-    return(<div className='flex flex-col justify-center'>
+    return(<div className='flex flex-col justify-center text-center'>
       <Image src={IconFailed} alt='success-icon' className='h-[100px] w-auto'></Image>
-      <p className='mt-10'>Akun anda gagal didaftarkan</p>
-      <Button name={'close'} className={''}  onClickFunction={()=> {
+      <p className='mt-10 font-semibold text-xl'>Akun anda gagal didaftarkan</p>
+      <p className='text-sm'>{messageFailed}</p>
+      <Button name={'close'} className={'mt-10'}  onClickFunction={()=> {
         setModal(!modal) 
         router.push('/signup')
       }}/>
@@ -106,6 +108,7 @@ export default function SignUp() {
                 setSuccess(true)
                 if(res.status == 400){
                   setInvalidInput(!invalidInput)
+  
                 }
              }
           )
@@ -113,7 +116,7 @@ export default function SignUp() {
             (err) => {
               setLoading(false)
               setSuccess(false)
-              console.log(err.data)
+              setMessageFailed(err.response.data.message)
             }
           )
     }
