@@ -114,10 +114,9 @@ export default function Home() {
                   router.push('/dashboard')
                 }}
             >{`Detail`}</button>
-            {listCompetitio.includes(type, 0) ? 
+            {listCompetitio.includes(type, 0) || data?.is_verified === false ? 
                 <button className='bg-[#064C72]  w-full p-2 rounded-2xl text-white opacity-75' disabled>Register</button> 
-                : <button className='bg-[#064C72] w-full p-2 rounded-2xl text-white' 
-                      onClick={()=> {handlerRegister(id)}}>Register</button>}
+                : <button className='bg-[#064C72] w-full p-2 rounded-2xl text-white' onClick={()=> {handlerRegister(id)}}>Register</button>}
             </div>
       </div>
     }
