@@ -34,12 +34,14 @@ export default function SignIn() {
                     setInvalidMessage(response.data.message)
                     console.log(response)
                     setInvalid(true)
+                    router.push('/dashboard')
                 }                
             }
 
         ).catch(
             (err) => {
                 setInvalid(true)
+                router.push('/dashboard')
             }
         )
         router.push('/dashboard')
