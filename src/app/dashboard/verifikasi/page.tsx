@@ -92,12 +92,11 @@ export default function Verifikasi() {
                 }
                 ).catch(
                     (ee) => {
-                        console.log('ERRR')
-                        console.log(ee)
+                        router.push('/dashboard')
                     }
                 )
              }else{
-
+                router.push('/dashboard')
              }
             
         }

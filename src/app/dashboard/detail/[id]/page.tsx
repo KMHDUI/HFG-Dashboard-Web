@@ -70,7 +70,6 @@ export default function Detail({ params }: { params: { id: String } }) {
                     // }
                     setHeaderName(response.data.data.competition_name)
                 }else{
-                    // ROUTER PUSH
                     router.push('/dashboard')
                 }
             }

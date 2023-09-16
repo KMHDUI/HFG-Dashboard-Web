@@ -102,7 +102,7 @@ export default function Home() {
       type : String ,
       name: String,     
       using_submission: boolean) => {
-
+        console.log(name)
       return <div className='min-h-[120px] w-full md:min-w-[350px] bg-white  rounded-2xl p-10' id={`${id}`}>
           {/* {confirmation?modalPopUp():<></>} */}
           <p className='font-bold text-2xl text-[#5B5B5B]'>{type}</p>
@@ -114,7 +114,7 @@ export default function Home() {
                   router.push('/dashboard')
                 }}
             >{`Detail`}</button>
-            {listCompetitio.includes(type, 0) || data?.is_verified === false ? 
+            {listCompetitio.includes(type, 0) || data?.is_verified === false || type.toLocaleLowerCase() == 'futsal' ? 
                 <button className='bg-[#064C72]  w-full p-2 rounded-2xl text-white opacity-75' disabled>Register</button> 
                 : <button className='bg-[#064C72] w-full p-2 rounded-2xl text-white' onClick={()=> {handlerRegister(id)}}>Register</button>}
             </div>
