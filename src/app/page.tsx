@@ -86,6 +86,15 @@ const goToNext = () => {
         <Link href={'/futsal'}>
           <p className='mt-16 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[40%] mx-auto text-center font-semibold md:text-xl '>Rulebook Futsal HFG 17th</p>
         </Link>
+        <Link href={'/fotografi'}>
+          <p className='mt-16 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[40%] mx-auto text-center font-semibold md:text-xl '>Guidebook Fotografi HFG 17th</p>
+        </Link>
+        <Link href={'/esai'}>
+          <p className='mt-16 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[40%] mx-auto text-center font-semibold md:text-xl '>Guidebook Esai HFG 17th</p>
+        </Link>
+        <Link href={'/storytelling'}>
+          <p className='mt-16 p-5 bg-[#026C80] hover:bg-[#0692AC] text-white lg:max-w-[40%] mx-auto text-center font-semibold md:text-xl '>Guidebook StoryTelling HFG 17th</p>
+        </Link>
         {/* <div className='text-center mt-5 md:mt-20'>
             <p className='font-semibold md:text-2xl'>Our Competition</p>
             <div className='flex flex-col md:flex-row justify-between xl:px-64 mt-2 md:mt-10 md:text-xl'>
