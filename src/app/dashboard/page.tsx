@@ -97,6 +97,12 @@ export default function Home() {
               )
     }, [])
 
+    const hanleFutsal = () => {
+      return<div>
+        
+      </div>
+    }
+
     const cardCompetition = ( 
       id : String,
       type : String ,
@@ -111,7 +117,15 @@ export default function Home() {
           <div className='flex flex-col md:flex-row gap-2'>
             <button className='border-2 border-[#064C72] text-[#064C72] w-full p-2 rounded-2xl font-semibold'
                 onClick={()=> {
-                  router.push('/dashboard')
+                  if(type == "Essay"){
+                    router.push(`/esai`)
+                  } else if(type == "Photography") {
+                    router.push(`/fotografi`)
+                  } else if(type == "Story Telling"){
+                    router.push(`/storytelling`)
+                  } else {
+                    router.push(`/futsal`)
+                  }
                 }}
             >{`Detail`}</button>
             {listCompetitio.includes(type, 0) || data?.is_verified === false || type.toLocaleLowerCase() == 'futsal' ? 
