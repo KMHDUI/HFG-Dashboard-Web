@@ -75,7 +75,6 @@ export default function Detail({ params }: { params: { id: String } }) {
         axios.get(url, config).then(
             (response) => {
                 if(response.status == 200){
-                    console.log(response.data)
                     setDetail({
                         competition_name:response.data.data.competition_name,
                         payment_status : response.data.data.payment_status,
@@ -162,7 +161,6 @@ export default function Detail({ params }: { params: { id: String } }) {
     }
 
     const SoloDevelop = () => {
-        console.log(detail?.competition_using_submission)
         return<div className="flex-grow flex flex-col">
             <span className="flex">
                 <p>Link File Anda:</p>
