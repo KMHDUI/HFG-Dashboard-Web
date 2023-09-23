@@ -54,7 +54,9 @@ export default function SignUp() {
         <Button name={'close'} className={''}  onClickFunction={()=> {
           setModal(!modal)
           router.push('/signin')
-          }}/>
+          }}
+          disabled={false}
+          />
       </div>
     )
   }
@@ -67,7 +69,9 @@ export default function SignUp() {
       <Button name={'close'} className={'mt-10'}  onClickFunction={()=> {
         setModal(!modal) 
         router.push('/signup')
-      }}/>
+      }}
+      disabled={false}
+      />
     </div>)
   }
 
@@ -172,7 +176,7 @@ export default function SignUp() {
                   <Input typeInput='text' className='' onChange={setAsalPendididkan}/>
                 </div>
               </div>
-              <Button name='Sign Up' className='mt-14 mx-16 xl:mx-28' onClickFunction={HandleSubmitForm} />
+              <Button name='Sign Up' className='mt-14 mx-16 xl:mx-28' onClickFunction={HandleSubmitForm}disabled={false}/>
               <span className='flex gap-1 justify-center w-full text-[#064C72] mb-5'><p>Already have an account?</p><Link href={'/signin'} className='font-semibold'> Sign In</Link></span>
           </form>
       </section>

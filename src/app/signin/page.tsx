@@ -29,22 +29,18 @@ export default function SignIn() {
                 if(response.status == 200){
                     setCookie('token', response.data.token,{maxAge:60*60*6})
                     localStorage.setItem("token", response.data.token)
-                    router.push('/dashboard')
                 } else{
                     setInvalidMessage(response.data.message)
                     console.log(response)
                     setInvalid(true)
-                    router.push('/dashboard')
                 }                
             }
 
         ).catch(
             (err) => {
                 setInvalid(true)
-                router.push('/dashboard')
             }
         )
-        router.push('/dashboard')
     }
 
     function modalPopUp(){
@@ -85,6 +81,7 @@ export default function SignIn() {
                 <div className=''>
                     <Button name='Submit' className='mt-20 w-full'
                             onClickFunction={handleSignIn}
+                            disabled={false}
                      />
                     <span className='flex gap-1 justify-center w-full mt-2 text-[#064C72]'><p>Already have an account?</p><Link href={'/signup'} className='font-bold'>Sign Up</Link></span>
                 </div>

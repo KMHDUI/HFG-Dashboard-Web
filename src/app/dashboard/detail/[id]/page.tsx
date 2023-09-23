@@ -12,6 +12,8 @@ import Personal from "@/assets/Person.svg"
 import Member from "@/assets/Two_Person.svg"
 import BillingOpen from "@/assets/Compass.svg"
 import { useRouter } from "next/navigation";
+import { url } from "inspector";
+import { config } from "process";
 
 type detailProps = {
     competition_name: String,
@@ -20,6 +22,20 @@ type detailProps = {
     competition_type: String,
     url: String | undefined
     bill_total: String
+}
+
+type FutsalResponse = {
+
+}
+
+type MemberFutsal = {
+    is_active : boolean,
+    is_owner : boolean,
+    user_college: String,
+    user_email: String,
+    user_fullname: String,
+    acceptance_status:String |null
+    id: String
 }
 type responeseUser = {
     college: String,
@@ -36,6 +52,9 @@ export default function Detail({ params }: { params: { id: String } }) {
     const [detail, setDetail] = useState<detailProps>();
     const [headerName, setHeaderName] = useState<String>("");
     const [billLink, setBillLink] = useState<String>("");
+    
+    const [ownerFutsal, setOwnerFutsal] = useState<MemberFutsal|null>(null);
+    const [memberFutsal, setMemberFutsal] = useState<MemberFutsal[]>([]);
     const router = useRouter();
 
     useEffect(() => {
@@ -56,6 +75,7 @@ export default function Detail({ params }: { params: { id: String } }) {
         axios.get(url, config).then(
             (response) => {
                 if(response.status == 200){
+                    console.log(response.data)
                     setDetail({
                         competition_name:response.data.data.competition_name,
                         payment_status : response.data.data.payment_status,
@@ -64,25 +84,85 @@ export default function Detail({ params }: { params: { id: String } }) {
                         url: response.data.data.url,
                         bill_total: response.data.data.bill.bill_total,
                     })
-                    // let billLink = response.data.data.payments[0].image_url;
-                    // if(billLink != null){
-                    //     setBillLink(billLink)
-                    // }
+
+                    if(response.data.data.competition_name == 'Futsal'){
+                        const member = response.data.data.members;
+                        for(let i = 0; i < member.length; i++){
+                            if(member[i].is_owner){
+                                setOwnerFutsal(member[i])
+                            }else{
+                                if(member[i].acceptance_status != "Rejected"){
+                                    let newMember:MemberFutsal[]|null = memberFutsal;
+                                    memberFutsal.push(member[i]);
+                                    setMemberFutsal(newMember)
+                                }
+                            }
+                        }
+                     }
                     setHeaderName(response.data.data.competition_name)
                 }else{
                     router.push('/dashboard')
                 }
             }
-        ).catch(()=> {                    router.push('/dashboard')    })
+        ).catch(()=> {                    
+            router.push('/dashboard')    })
     }, [params.id])
 
     const TeamDevelop = () => {
-        return<div>
-            <p>Sedang Proses Pembaikan</p>
+
+        return<div className="w-full">
+            <p className="text-xl">{`Invitation Member Code: ${params.id}`}</p>
+            <div className="mt-10 border-2	p-10 w-fit rounded-xl">
+                <p className="font-semibold text-center">Official Team Name</p>
+                <p className="mt-3">{`Name : ${ownerFutsal?.user_fullname}`}</p>
+                <p>{`Email : ${ownerFutsal?.user_email}`}</p>
+                <p>{`Intitusi Pendidikan: ${ownerFutsal?.user_college}`}</p>
+            </div>
+
+            <div className="mt-10">
+                <p className="font-semibold">Team Member</p>
+                <table className="table-auto w-full mt-5">
+                    <thead className="text-sm text-gray-700 uppercase bg-[#E7F6FF]">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                Full Name
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                User Email
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Status Member
+                            </th>
+                            {ownerFutsal?.user_email == profile?.email ?   <th scope="col" className="px-6 py-3">
+                                Action
+                            </th> : <></>}
+                        </tr>
+                    </thead>
+                    <tbody className="mt-10">
+                        {memberFutsal.map((data, id) => {return <tr key={id} className="text-center">
+                            <td>{data.user_fullname}</td>
+                            <td>{data.user_email}</td>
+                            <td>{data.acceptance_status}</td>
+                            {ownerFutsal?.user_email == profile?.email ?  <td>
+                                {data.acceptance_status == "Pending" ? <div className="flex gap-3 ">
+                                    <button className="border-2 p-2 rounded-xl bg-[#4AD20B] hover:bg-[#fff]" onClick={() => changeStatus(data.id, "Accepted")}>Accept</button>
+                                    <button className="bg-[#D2230B] hover:bg-[#fff] border-2 p-2 rounded-xl" onClick={()=> {() => changeStatus(data.id, "Rejected") }}>Reject</button>
+                                </div> : <div>   
+                                    <button className="bg-[#D2230B] hover:bg-[#fff] border-2 p-2 rounded-xl" onClick={()=> {() => changeStatus(data.id, "Deleted") }}>Delete</button>
+                                </div>}
+                            </td> : <></>}
+
+                        </tr>
+                        })}
+                      
+                    </tbody>
+                </table>
+            </div>
         </div>
     }
 
     const SoloDevelop = () => {
+        console.log(detail?.competition_using_submission)
         return<div className="flex-grow flex flex-col">
             <span className="flex">
                 <p>Link File Anda:</p>
@@ -95,6 +175,22 @@ export default function Detail({ params }: { params: { id: String } }) {
             </Link>: <></>}
         </div>
     }
+
+
+    function changeStatus(id:String, Action:String){
+        axios.patch('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition/member/status',
+            {
+                code: params.id,
+                memberId: id,
+                status: Action
+            }
+            , {
+                headers: {
+                'Authorization': 'Bearer ' + getCookie('token')
+                }
+            }
+        )
+    } 
 
     const paymentScetion = () => {
         return <div className=" min-w-[30%] text-white">

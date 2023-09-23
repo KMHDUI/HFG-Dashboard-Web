@@ -5,7 +5,7 @@ import Link from 'next/link';
 type InputType = {
   typeInput:String,
   className:String,
-  onChange: any
+  onChange: any,
 }
 
 export default function Input(props: InputType) {

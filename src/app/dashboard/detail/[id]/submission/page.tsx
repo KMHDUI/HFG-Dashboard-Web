@@ -97,7 +97,7 @@ export default function Submition({ params }: { params: { id: string }}) {
                     <li>2. Proses pembayaran akan dilakukan ketika klik tombol submit.</li>
                     <li>3. Yang memberi centang dibawah ini telah membaca dan membaca SYARAT DAN KETENTUAN LOMBA Essai 17 Hindu For Generation yang telah diinformasikan oleh panitia.</li>
                 </ul>
-                {agree ? <Button name={'Submit'} className={'w-full  mt-16 '} onClickFunction={handleSubmission}/> : <></>}
+                {agree ? <Button disabled={false} name={'Submit'} className={'w-full  mt-16 '} onClickFunction={handleSubmission}/> : <></>}
             </div>
         </div>
     </>

@@ -232,7 +232,7 @@ export default function Payment({ params }: { params: { id: string } }    ) {
                 {bill?.status == "Not Paid" ? <div className='mt-16 xl:mt-0 '>
                     <p className='mt-4'>{`Uploud Bukti Transfer HaloBelanja *(Opsional)`}</p>
                     <DropInput selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles}></DropInput>
-                    <Button name={'Verifikasi'} className={'w-full font-semibold py-3 mt-4'} onClickFunction={verifikasiPembayaran}/>
+                    <Button disabled={false} name={'Verifikasi'} className={'w-full font-semibold py-3 mt-4'} onClickFunction={verifikasiPembayaran}/>
                     <p className='text-center my-2'>Pastikan anda melakukan proses transfer sebelum melakukan verifikasi</p>
                 </div> : <div className={` text-center font-semibold w-full p-3 rounded-xl mt-4 bg-opacity-60  border-2 ${bill?.status == 'Pending' ? 'border-[#FFCD1A]' : 'border-[#55FF1A]'}] bg-[#${bill?.status == 'Pending' ? 'FFCD1A' : '55FF1A' }]`}>
                     <p>{bill?.status}</p>

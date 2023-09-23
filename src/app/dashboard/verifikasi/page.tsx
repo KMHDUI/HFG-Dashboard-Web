@@ -197,7 +197,7 @@ export default function Verifikasi() {
                     </div>
                 </div>
                 
-                <Button name='Submit' className='mx-0 md:mx-28 mt-6' onClickFunction={handleVerifikasi} />
+                <Button disabled={false} name='Submit' className='mx-0 md:mx-28 mt-6' onClickFunction={handleVerifikasi} />
             </form>
         </section>
         <Footer/>
