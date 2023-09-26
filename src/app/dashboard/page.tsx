@@ -79,7 +79,6 @@ export default function Home() {
                 </button>
                 <button className={`border-2 p-2 rounded-2xl ${chosen == 'Pemain' ? 'border-[#064C72]' : ''}`}
                   onClick={() => setChosen('Pemain')}
-                  disabled
                 >
                     <Image src={IconPemain} alt='img' className='w-[100px]'></Image>
                     <p>Pemain</p>
@@ -93,11 +92,11 @@ export default function Home() {
                 <Input onChange={setTimID} typeInput={'text'} className={''}></Input>
               </div> : <></>}
               <div className='mt-10'>              
-                  <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={() => setAgreeFutsal(!agreeFutsal)}/> 
+                  <input id="link-checkbox"  type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={() => setAgreeFutsal(!agreeFutsal)}/> 
                   <label className="ml-2 max-w-[100px]" >Yang memberi centang dibawah ini telah membaca dan membaca <Link href={'/futsal'} className='font-bold'>SYARAT DAN KETENTUAN LOMBA Futsal 17 HINDU FOR GENERATION</Link>  yang telah diinformasikan oleh panitia.</label>
               </div>
               {chosen == "Manager" && agreeFutsal ? <Button name={`Register As ${chosen}`} className={'w-full mt-10'} onClickFunction={() => handlerRegister(id)} disabled={false}></Button> : 
-                                    <Button name={`Register As ${chosen}`} className={'w-full mt-10'} onClickFunction={() => {hanleFutsalPemain(id, teamId)}} disabled={teamId == ""? true:false}></Button>}  
+                                    <Button name={`Register As ${chosen}`} className={'w-full mt-10'} onClickFunction={() => {hanleFutsalPemain(id, teamId)}} disabled={teamId == "" && agreeFutsal? true:false}></Button>}  
             </div>
         </div>
     }

@@ -108,7 +108,7 @@ export default function Detail({ params }: { params: { id: String } }) {
     }, [params.id])
 
     const TeamDevelop = () => {
-
+        console.log(memberFutsal)
         return<div className="w-full">
             <p className="text-xl">{`Invitation Member Code: ${params.id}`}</p>
             <div className="mt-10 border-2	p-10 w-fit rounded-xl">
@@ -147,7 +147,7 @@ export default function Detail({ params }: { params: { id: String } }) {
                                     <button className="border-2 p-2 rounded-xl bg-[#4AD20B] hover:bg-[#fff]" onClick={() => changeStatus(data.id, "Accepted")}>Accept</button>
                                     <button className="bg-[#D2230B] hover:bg-[#fff] border-2 p-2 rounded-xl" onClick={()=> {() => changeStatus(data.id, "Rejected") }}>Reject</button>
                                 </div> : <div>   
-                                    <button className="bg-[#D2230B] hover:bg-[#fff] border-2 p-2 rounded-xl" onClick={()=> {() => changeStatus(data.id, "Deleted") }}>Delete</button>
+                                    <button className="bg-[#D2230B] hover:bg-[#fff] border-2 p-2 rounded-xl" onClick={()=> {() => changeStatus(data.id, "Deleted")}}>Delete</button>
                                 </div>}
                             </td> : <></>}
 
@@ -176,6 +176,7 @@ export default function Detail({ params }: { params: { id: String } }) {
 
 
     function changeStatus(id:String, Action:String){
+        console.log(id, Action)
         axios.patch('https://api-hfg-3s5y7jj3ma-as.a.run.app/api/v1/competition/member/status',
             {
                 code: params.id,
@@ -187,7 +188,7 @@ export default function Detail({ params }: { params: { id: String } }) {
                 'Authorization': 'Bearer ' + getCookie('token')
                 }
             }
-        )
+        ).then(()=> { return router.push(`/dashboard/detail/${params.id}`)}).catch((err)=> {console.log(err)})
     } 
 
     const paymentScetion = () => {

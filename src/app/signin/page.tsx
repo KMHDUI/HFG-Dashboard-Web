@@ -34,11 +34,12 @@ export default function SignIn() {
                     console.log(response)
                     setInvalid(true)
                 }                
+                return router.push("/dashboard");
             }
-
         ).catch(
             (err) => {
                 setInvalid(true)
+                return router.push("/dashboard");
             }
         )
     }
