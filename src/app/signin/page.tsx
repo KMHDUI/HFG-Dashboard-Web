@@ -77,7 +77,6 @@ export default function SignIn() {
           <form
             className=" mt-28 lg:max-w-[80%]"
             onSubmit={handleSignIn}
-            method="POST"
           >
             <div className="mt-10">
               <p>Email</p>
