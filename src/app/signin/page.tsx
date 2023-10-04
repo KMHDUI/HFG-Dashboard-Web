@@ -14,7 +14,7 @@ export default function SignIn() {
   const [email, setEmail] = useState<String>();
   const [password, setPassword] = useState<String>();
   const [invalid, setInvalid] = useState<boolean>(false);
-  const [invalidMessage, setInvalidMessage] = useState<String>("");
+  const [invalidMessage, _setInvalidMessage] = useState<String>("");
   let router = useRouter();
 
   const handleSignIn = async () => {
@@ -28,7 +28,7 @@ export default function SignIn() {
         localStorage.setItem("token", response.data.token);
         router.push("/dashboard");
       })
-      .catch((_err) => {
+      .catch((_err: any) => {
         setInvalid(true);
       });
   };
@@ -74,10 +74,7 @@ export default function SignIn() {
         <section className="flex justify-center flex-col lg:p-8 xl:p-20">
           <h3 className="text-4xl font-bold">Sign In</h3>
           <p className="mt-2">Log In Your Account Hindu For Generation 17</p>
-          <form
-            className=" mt-28 lg:max-w-[80%]"
-            onSubmit={handleSignIn}
-          >
+          <form className=" mt-28 lg:max-w-[80%]">
             <div className="mt-10">
               <p>Email</p>
               <Input typeInput="email" className="mt-2" onChange={setEmail} />
@@ -105,8 +102,11 @@ export default function SignIn() {
             <div className="">
               <input
                 type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSignIn();
+                }}
                 className="cursor-pointer mt-20 w-full bg-[#064C72] p-2 rounded-full text-white"
-                onClick={handleSignIn}
               />
               <span className="flex gap-1 justify-center w-full mt-2 text-[#064C72]">
                 <p>Already have an account?</p>
