@@ -26,7 +26,8 @@ export default function SignIn() {
       .then((response) => {
         setCookie("token", response.data.token, { maxAge: 60 * 60 * 6 });
         localStorage.setItem("token", response.data.token);
-        router.push("/dashboard");
+        router.refresh();
+        router.replace("/dashboard");
       })
       .catch((_err: any) => {
         setInvalid(true);
