@@ -63,7 +63,7 @@ export default function DropInput(props: InputTypeDropZone){
                 id="dropzone-file" 
                 type="file" 
                 className="hidden" 
-                accept='image/jpeg, image/png, application/pdf'
+                accept='image/jpeg, image/png, application/pdf, zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed'
                 onChange={handleFileChange}
                 />
         </label>
