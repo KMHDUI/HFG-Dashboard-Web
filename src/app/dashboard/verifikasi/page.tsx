@@ -273,7 +273,7 @@ export default function Verifikasi() {
 
             <div>
               <div className="mt-4">
-                <p>Uploud File Screenshot Aplikasi Halo Belanja</p>
+                <p>Uploud File Screenshot Akun Halo Belanja</p>
                 <DropInput
                   selectedFiles={selectedFilesHaloBelanja}
                   setSelectedFiles={setSelectedFilesHaloBelanja}
